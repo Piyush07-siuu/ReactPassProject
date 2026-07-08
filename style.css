@@ -27,3 +27,13 @@ body{
     gap: 10px;
     margin-left: 120px;
 }
+#first h1 {
+    word-break: break-all;
+    font-size: 40px;
+}
+#second {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}

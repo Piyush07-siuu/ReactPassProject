@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from "react";
+import React,{useState,useEffect,useCallback} from "react";
 import ReactDom from "react-dom/client"
 
 function Main(){
@@ -6,8 +6,8 @@ function Main(){
     const [length,setLength]=useState(8)
     const [inclnumbers,setinclNumber]=useState(false)
     const [inclSpecialChar,setinclspecialChar]=useState(false)
-    function passGenerator(){
-        let pass="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    const passGenerator=useCallback(()=>{
+         let pass="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
         if(inclnumbers)
             pass+="1234567890"
         if(inclSpecialChar)
@@ -19,10 +19,10 @@ function Main(){
             ans+=pass[Math.floor(Math.random()*pass.length)]
         }
         setPassword(ans)
-    }
+    },[length,inclSpecialChar,inclnumbers])
     useEffect(()=>{
-            passGenerator()
-        },[length,inclSpecialChar,inclnumbers])
+        passGenerator()
+        },[passGenerator])
     return(
         <>
         <div id="first">
